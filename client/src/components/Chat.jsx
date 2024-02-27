@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -11,7 +9,6 @@ import ErrorPage from "./ErrorPage.jsx";
 let socket;
 
 export default function Chat() {
-    const link = process.env.ENDPOINT
     const location = useLocation();
 
     const [name, setName] = useState("");
@@ -28,7 +25,7 @@ export default function Chat() {
         setName(name);
         setRoom(room);
 
-        socket = io(link);
+        socket = io("https://baruachat.onrender.com");
 
         socket.emit("join", { name, room }, (error) => {
             if (error) setUserExists(true);

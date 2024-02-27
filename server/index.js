@@ -3,12 +3,14 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { addUser, getUser, getOnline, removeUser } from "./users.js";
+import router from './router';
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
 app.use(cors());
+app.use(router);
 
 io.on("connection", (socket) => {
     console.log(`Connected: ${socket.id}`);

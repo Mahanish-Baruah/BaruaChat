@@ -9,7 +9,6 @@ import ErrorPage from "./ErrorPage.jsx";
 let socket;
 
 export default function Chat() {
-    const ENDPOINT = "localhost:3500";
     const location = useLocation();
 
     const [name, setName] = useState("");
@@ -26,7 +25,7 @@ export default function Chat() {
         setName(name);
         setRoom(room);
 
-        socket = io(ENDPOINT);
+        socket = io(process.env.ENDPOINT);
 
         socket.emit("join", { name, room }, (error) => {
             if (error) setUserExists(true);

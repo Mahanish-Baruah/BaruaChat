@@ -55,7 +55,7 @@ export default function Chat() {
 
     return (
         <>
-            <div className="h-screen w-screen bg-indigo-900">
+            <div className="h-dvh w-screen bg-indigo-900">
                 <div className="xl:w-1/2 h-full mx-auto bg-blue-100">
                     {!userExists ? (
                         <>

@@ -78,4 +78,8 @@ io.on("connection", (socket) => {
     });
 });
 
+server.get("/", (req, res) => {
+  res.send({ response: "Server is up and running." }).status(200);
+});
+
 server.listen(3500, () => console.log("server running"));

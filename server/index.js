@@ -3,26 +3,19 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { addUser, getUser, getOnline, removeUser } from "./users.js";
-import router from './router.js';
+import router from "./router.js";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(httpServer, {
+    cors: {
+        origin: "https://baruachat.netlify.app/",
+    },
+});
 
 app.use(router);
 
-var whitelist = ['https://baruachat.netlify.app/']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
-io.on("connection", cors(corsOptions), (socket) => {
+io.on("connection", (socket) => {
     console.log(`Connected: ${socket.id}`);
 
     socket.on("join", ({ name, room }, callback) => {
@@ -57,7 +50,7 @@ io.on("connection", cors(corsOptions), (socket) => {
         try {
             const user = getUser(socket.id);
             const userMsg = { user: user.name, text: msg };
-            console.log(userMsg)
+            console.log(userMsg);
             io.to(user.room).emit("msg", userMsg);
         } catch (err) {
             console.log(err);
@@ -68,7 +61,7 @@ io.on("connection", cors(corsOptions), (socket) => {
         console.log(`Disconnected: ${socket.id}`);
         try {
             const user = removeUser(socket.id);
-            
+
             if (user) {
                 const online = getOnline(user.room);
                 const leftMsg = {

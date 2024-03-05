@@ -3,7 +3,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { addUser, getUser, getOnline, removeUser } from "./users.js";
-import router from './router';
+import router from './router.js';
 
 const app = express();
 const server = createServer(app);
@@ -78,10 +78,6 @@ io.on("connection", (socket) => {
     socket.on("reconnect", () => {
         console.log("user reconnected");
     });
-});
-
-server.get("/", (req, res) => {
-  res.send({ response: "Server is up and running." }).status(200);
 });
 
 server.listen(3500, () => console.log("server running"));

@@ -9,11 +9,20 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
-app.use(cors());
 app.use(router);
 
-io.on("connection", (res, socket) => {
-    res.header('Access-Control-Allow-Origin', '*');
+var whitelist = ['https://baruachat.netlify.app/']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+io.on("connection", cors(corsOptions), (socket) => {
     console.log(`Connected: ${socket.id}`);
 
     socket.on("join", ({ name, room }, callback) => {

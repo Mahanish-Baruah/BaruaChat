@@ -12,12 +12,8 @@ const io = new Server(server);
 app.use(cors());
 app.use(router);
 
-app.use((req, res, next) => {
+io.on("connection", (res, socket) => {
     res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
-
-io.on("connection", (socket) => {
     console.log(`Connected: ${socket.id}`);
 
     socket.on("join", ({ name, room }, callback) => {

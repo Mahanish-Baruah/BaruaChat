@@ -9,7 +9,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://baruachat.netlify.app/chat",
+        origin: "https://baruachat.netlify.app",
     },
 });
 

@@ -7,7 +7,7 @@ import router from "./router.js";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(httpServer, {
+const io = new Server(server, {
     cors: {
         origin: "https://baruachat.netlify.app/",
     },

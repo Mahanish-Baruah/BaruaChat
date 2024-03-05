@@ -26,6 +26,7 @@ export default function Chat() {
         setRoom(room);
 
         socket = io("https://baruachat.onrender.com");
+        console.log(socket)
 
         socket.emit("join", { name, room }, (error) => {
             if (error) setUserExists(true);

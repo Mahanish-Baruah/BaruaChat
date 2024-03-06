@@ -8,7 +8,7 @@ function MessageBox({ msgObj: { user, text }, name }) {
                     <div className="flex justify-end">
                         <div className="w-2/3 flex flex-col items-end text-justify">
                             <div className="my-2 text-black">{user}</div>
-                            <div className="py-3 px-5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl">
+                            <div className="py-2 px-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md">
                                 {text}
                             </div>
                         </div>
@@ -17,7 +17,7 @@ function MessageBox({ msgObj: { user, text }, name }) {
                     <div className="flex justify-start">
                         <div className="">
                             <div className="my-2 text-black">{user}:</div>
-                            <div className="py-3 px-5 bg-slate-700 rounded-2xl">
+                            <div className="py-2 px-3 bg-slate-700 rounded-md">
                                 {text}
                             </div>
                         </div>
@@ -26,7 +26,7 @@ function MessageBox({ msgObj: { user, text }, name }) {
                     <div className="flex justify-start">
                         <div className="w-2/3 flex flex-col items-start text-justify">
                             <div className="my-2 text-black">{user}</div>
-                            <div className="py-3 px-5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl">
+                            <div className="py-2 px-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md">
                                 {text}
                             </div>
                         </div>

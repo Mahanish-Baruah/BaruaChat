@@ -9,7 +9,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://baruachat.netlify.app/chat",
+        origin: "https://baruachat.netlify.app",
     },
 });
 
@@ -83,4 +83,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(3500, () => console.log("server running"));
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => console.log("server running"));
